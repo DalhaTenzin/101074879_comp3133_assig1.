@@ -21,4 +21,19 @@ type Mutation {
         password: String!
         email: String!
         type: String!): User
-}`
+}
+
+      addListing(listing_id: String!
+        listing_title: String!
+        description: String!
+        street: String!
+        city: String!
+        postal_code: String!
+        email: String!
+        username: String!): Listing
+      addBooking(listing_id: String!
+        booking_id: String!
+        username: String!): Booking
+
+      }
+`

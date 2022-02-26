@@ -1,38 +1,53 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    username: {
+let ListingSchema = new mongoose.Schema({
+
+    listing_id: {
         type: String,
         required: true,
-        unique: [true, 'username must be unique']
+        unique: true
     },
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
-    password: {
+    listing_title: {
         type: String,
         required: true,
-        
+        lowercase: true
+    },
+    description: {
+        type: String,
+        required: true,
+        maxlength: 1000
+    },
+    street: {
+        type: String,
+        required: true,
+        lowercase: true
+    },
+    city: {
+        type: String,
+        required: true,
+        lowercase: true
+    },
+    postal_code: {
+        type: String,
+        required: true,
+        lowercase: true
+    },
+    price: {
+        type: Number,
+        required: true
     },
     email: {
         type: String,
         required: true,
-        match: [/^([\w]+)(.[\w]+)*@([\w]+)(.[\w]{2,3}){1,2}$/,
-            'Please enter a valid email address']
+        match: [/.+\@.+\..+/, 'Please enter a valid email address']
     },
-    type: {
+    username: {
         type: String,
-        required: true,
-        enum: ['admin', 'customer'],
-    },
+        required: true
+    }
 
-});
+})
 
-
-module.exports = mongoose.model('user', userSchema);
+let Listing = mongoose.model('Listing', ListingSchema)
+module.exports = Listing
